@@ -66,6 +66,8 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:id="@+id/productName"
+                android:textSize="14sp"
+                android:paddingHorizontal="16dp"
                 android:background="@drawable/edittext_bg"
                 app:layout_constraintTop_toBottomOf="@id/firstnameLabel"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -84,6 +86,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="24dp"
+                android:textSize="14sp"
+                android:paddingHorizontal="16dp"
                 />
 
 
@@ -103,6 +107,8 @@
                 android:layout_height="48dp"
                 android:id="@+id/description"
                 android:background="@drawable/edittext_bg"
+                android:textSize="14sp"
+                android:paddingHorizontal="16dp"
                 app:layout_constraintTop_toBottomOf="@id/emailLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -125,6 +131,8 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:id="@+id/quantity"
+                android:textSize="14sp"
+                android:paddingHorizontal="16dp"
                 android:background="@drawable/edittext_bg"
                 app:layout_constraintTop_toBottomOf="@id/passwordLabel"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -153,6 +161,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginHorizontal="24dp"
+                android:textSize="14sp"
+                android:paddingHorizontal="16dp"
                 android:inputType="number"
                 android:layout_marginTop="4dp"
                 />
@@ -179,6 +189,8 @@
                 android:layout_marginHorizontal="24dp"
                 android:inputType="number"
                 android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:paddingHorizontal="16dp"
                 />
 
             <androidx.appcompat.widget.AppCompatButton
