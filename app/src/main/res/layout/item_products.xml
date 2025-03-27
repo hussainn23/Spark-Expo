@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:padding="8dp"
+    android:background="@drawable/stroke">
+
+    <!-- Left Green Line -->
+    <View
+        android:layout_width="4dp"
+        android:layout_height="55dp"
+        android:background="@color/dark_green"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/med" />
+
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/item_image"
+        android:layout_marginStart="16dp"
+        android:text="Item Name"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/item_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_name"
+        android:layout_toEndOf="@id/item_image"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp"
+        android:text="Quantity"
+        android:textSize="14sp"
+        android:textColor="#777777" />
+
+    <TextView
+        android:id="@+id/item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rs.0.00"
+        android:textSize="14sp"
+        android:textColor="#333333"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_below="@id/item_quantity"
+        android:layout_toEndOf="@id/item_image"
+        />
+
+    <TextView
+        android:id="@+id/item_stock_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="In Stock"
+        android:padding="4dp"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/login_btn"
+        android:textColor="#FFFFFF"
+        android:layout_marginEnd="8dp"
+        android:textSize="12sp" />
+
+</RelativeLayout>

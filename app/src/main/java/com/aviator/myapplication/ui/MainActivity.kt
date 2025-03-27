@@ -62,15 +62,15 @@ class MainActivity : AppCompatActivity() {
             closeDrawer()
         }
         binding.selectProducts.setOnClickListener {
-//            navController.navigate(R.id.fragmentSelectProducts)
+            navController.navigate(R.id.productsViewPagerFragment)
             closeDrawer()
         }
-        binding.profile.setOnClickListener {
-//            navController.navigate(R.id.profileFragment)
+        binding.addProduct.setOnClickListener {
+            navController.navigate(R.id.addProductFragment)
             closeDrawer()
         }
-        binding.customerSales.setOnClickListener {
-//            navController.navigate(R.id.customerSalesFragment)
+        binding.categories.setOnClickListener {
+            navController.navigate(R.id.categoriesFragment)
             closeDrawer()
         }
         binding.paymentHistory.setOnClickListener {

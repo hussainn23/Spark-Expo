@@ -224,7 +224,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:text="Select Products"
+                                android:text="Products"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
@@ -233,7 +233,7 @@
 
                         <!-- My Tasks Item -->
                         <LinearLayout
-                            android:id="@+id/profile"
+                            android:id="@+id/addProduct"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="?attr/selectableItemBackground"
@@ -251,7 +251,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:text="Profile"
+                                android:text="Add Product"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
@@ -314,7 +314,7 @@
 
                         <!-- Completed Item -->
                         <LinearLayout
-                            android:id="@+id/customerSales"
+                            android:id="@+id/categories"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="?attr/selectableItemBackground"
