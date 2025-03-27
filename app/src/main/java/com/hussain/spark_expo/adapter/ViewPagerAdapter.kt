@@ -1,4 +1,4 @@
-package com.hussain.spark_expo
+package com.hussain.spark_expo.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

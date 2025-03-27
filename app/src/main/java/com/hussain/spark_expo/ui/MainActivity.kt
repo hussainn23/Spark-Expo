@@ -52,6 +52,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupCustomNavigationView() {
+
+
         binding.dashboard.setOnClickListener {
             navController.navigate(R.id.dashboardFragment)
             closeDrawer()
@@ -72,6 +74,8 @@ class MainActivity : AppCompatActivity() {
 //            navController.navigate(R.id.paymentHistoryFragment)
             closeDrawer()
         }
+
+
     }
 
     private fun closeDrawer() {

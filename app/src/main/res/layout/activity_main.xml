@@ -116,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/profile_image"
-                        android:text="Muhammad Ahmad"
+                        android:text="Muhammad Hussain"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
@@ -124,7 +124,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/profile_image"
-                        android:text="muhaammad@gmail.com"
+                        android:text="admin@gmail.com"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                 </LinearLayout>

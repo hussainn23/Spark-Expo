@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hussain.spark_expo.OrderAdapter
+import com.hussain.spark_expo.adapter.OrderAdapter
 import com.hussain.spark_expo.databinding.FragmentDashboardBinding
 import com.hussain.spark_expo.model.Order
 import com.github.mikephil.charting.components.XAxis

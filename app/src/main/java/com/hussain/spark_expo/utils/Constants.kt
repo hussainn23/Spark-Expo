@@ -1,0 +1,20 @@
+package com.hussain.spark_expo.utils
+
+class Constants {
+   ////////////////////////////////////////COLLECTIONS///////////////////////////////
+      val USER_COLLECTION="spark-admin"
+
+
+
+
+
+
+
+
+
+      ////////////////////////////////KEYS////////////////////////////////
+      val USER_EMAIL="email"
+      val USER_PASSWORD="password"
+
+
+}
