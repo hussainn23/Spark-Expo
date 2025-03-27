@@ -24,6 +24,13 @@
                 app:layout_constraintGuide_percent="0.15"
                 android:orientation="horizontal"
                 />
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/guideTwo"
+                app:layout_constraintGuide_percent="0.4"
+                android:orientation="horizontal"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,18 +76,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/emailLabel"
                 android:text="Email Address"
-
-                app:layout_constraintTop_toBottomOf="@id/signInLabel"
+                app:layout_constraintTop_toBottomOf="@id/guideTwo"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="34dp"
                 android:textSize="12sp"
                 />
             <EditText
                 android:layout_width="0dp"
-                android:layout_height="43dp"
+                android:layout_height="48dp"
                 android:id="@+id/email"
-                android:paddingHorizontal="7dp"
+                android:paddingHorizontal="16dp"
+                android:textSize="14sp"
                 android:background="@drawable/edittext_bg"
                 app:layout_constraintTop_toBottomOf="@id/emailLabel"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -97,16 +103,17 @@
                 app:layout_constraintTop_toBottomOf="@id/email"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:textSize="12sp" />
 
             <EditText
                 android:layout_width="0dp"
-                android:layout_height="43dp"
+                android:layout_height="48dp"
                 android:id="@+id/password"
-                android:paddingHorizontal="7dp"
+                android:paddingHorizontal="16dp"
                 android:background="@drawable/edittext_bg"
                 app:layout_constraintTop_toBottomOf="@id/passwordLabel"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginHorizontal="16dp"
@@ -123,7 +130,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginTop="16dp"
                 android:textSize="12sp"
-                android:visibility="invisible"
+                android:visibility="gone"
                 android:textColor="@color/dark_green"
                 android:textStyle="bold"
                 />
@@ -139,7 +146,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="16dp"
                 />
 
             <TextView
@@ -153,7 +160,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginTop="16dp"
                 android:textSize="12sp"
-                android:visibility="invisible"
+                android:visibility="gone"
                 android:textColor="#787777"
                 />
 
@@ -178,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_marginVertical="24dp"
+                android:layout_marginVertical="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/signUp"

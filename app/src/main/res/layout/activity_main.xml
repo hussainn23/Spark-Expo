@@ -54,6 +54,13 @@
                      />
 
                 <!-- Notification Bell -->
+                <ImageView
+                    android:id="@+id/iv_cart_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/baseline_shopping_cart_24"
+                    app:tint="@color/dark_green" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -79,6 +86,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="@color/white"
         >
 
         <!-- Custom Drawer Items -->
@@ -118,7 +126,7 @@
                         android:layout_toRightOf="@+id/profile_image"
                         android:text="Muhammad Hussain"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -126,7 +134,7 @@
                         android:layout_toRightOf="@+id/profile_image"
                         android:text="admin@gmail.com"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -187,7 +195,7 @@
                                 android:layout_marginStart="24dp"
                                 android:paddingStart="16dp"
                                 android:textColor="@color/white"
-                                android:textSize="16sp"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -226,7 +234,7 @@
                                 android:layout_marginStart="16dp"
                                 android:text="Products"
                                 android:textColor="@color/black"
-                                android:textSize="16sp"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -253,7 +261,7 @@
                                 android:layout_marginStart="16dp"
                                 android:text="Add Product"
                                 android:textColor="@color/black"
-                                android:textSize="16sp"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -332,14 +340,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:text="Customer Sales"
+                                android:text="Categories"
                                 android:textColor="@color/black"
                                 android:textStyle="bold"
-                                android:textSize="16sp" />
+                                android:textSize="14sp" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/paymentHistory"
+                            android:id="@+id/orders"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="?attr/selectableItemBackground"
@@ -357,10 +365,35 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:text="Payment History"
+                                android:text="Orders"
                                 android:textColor="@color/black"
                                 android:textStyle="bold"
-                                android:textSize="16sp" />
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/logout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center_vertical"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/baseline_logout_24" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:text="Logout"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                android:textSize="14sp" />
                         </LinearLayout>
 
                     </LinearLayout>

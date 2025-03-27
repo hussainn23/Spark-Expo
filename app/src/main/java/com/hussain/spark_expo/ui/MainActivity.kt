@@ -1,12 +1,17 @@
 package com.hussain.spark_expo.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.hussain.spark_expo.R
 import com.hussain.spark_expo.databinding.ActivityMainBinding
+import com.hussain.spark_expo.databinding.DialogLogoutBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -23,6 +28,10 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+
+        binding.ivCartIcon.setOnClickListener {
+            navController.navigate(R.id.cartFragment)
+        }
 
         handleToolbar()
         setupCustomDrawerIcon()
@@ -52,8 +61,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupCustomNavigationView() {
-
-
         binding.dashboard.setOnClickListener {
             navController.navigate(R.id.dashboardFragment)
             closeDrawer()
@@ -70,11 +77,13 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(R.id.categoriesFragment)
             closeDrawer()
         }
-        binding.paymentHistory.setOnClickListener {
-//            navController.navigate(R.id.paymentHistoryFragment)
+        binding.orders.setOnClickListener {
+            navController.navigate(R.id.ordersFragment)
             closeDrawer()
         }
-
+        binding.logout.setOnClickListener {
+            showLogoutDialog()
+        }
 
     }
 
@@ -95,5 +104,30 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+    private fun showLogoutDialog() {
+        val dialogBinding = DialogLogoutBinding.inflate(LayoutInflater.from(this))
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogBinding.root)
+            .create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        if (dialog.window != null) {
+            dialog.window!!.setLayout(
+                (resources.displayMetrics.widthPixels * 0.9).toInt(),
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        }
+
+        dialogBinding.yesBtn.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+        dialogBinding.noBtn.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
 
 }

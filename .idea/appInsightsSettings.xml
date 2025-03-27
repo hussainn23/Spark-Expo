@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.hussain.spark_expo" />
+                  <option name="mobileSdkAppId" value="1:295829093418:android:3052e415b63488e1419753" />
+                  <option name="projectId" value="inner-bliss-65eb3" />
+                  <option name="projectNumber" value="295829093418" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
