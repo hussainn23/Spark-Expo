@@ -1,4 +1,4 @@
-package com.aviator.myapplication.fragment
+package com.hussain.spark_expo.fragment
 
 import android.graphics.Color
 import android.os.Bundle
@@ -7,17 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aviator.myapplication.OrderAdapter
-import com.aviator.myapplication.R
-import com.aviator.myapplication.databinding.FragmentDashboardBinding
-import com.aviator.myapplication.model.Order
+import com.hussain.spark_expo.OrderAdapter
+import com.hussain.spark_expo.databinding.FragmentDashboardBinding
+import com.hussain.spark_expo.model.Order
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
 
 class DashboardFragment : Fragment() {
     private lateinit var binding: FragmentDashboardBinding

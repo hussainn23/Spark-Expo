@@ -1,13 +1,9 @@
-package com.aviator.myapplication.ui
+package com.hussain.spark_expo.ui
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.aviator.myapplication.R
-import com.aviator.myapplication.databinding.ActivityLoginBinding
+import com.hussain.spark_expo.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding

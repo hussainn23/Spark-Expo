@@ -1,4 +1,4 @@
-package com.aviator.myapplication.model
+package com.hussain.spark_expo.model
 
 data class Order(
     val serialNo: String,

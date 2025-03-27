@@ -1,17 +1,12 @@
-package com.aviator.myapplication.ui
+package com.hussain.spark_expo.ui
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.aviator.myapplication.R
-import com.aviator.myapplication.databinding.ActivityMainBinding
+import com.hussain.spark_expo.R
+import com.hussain.spark_expo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding

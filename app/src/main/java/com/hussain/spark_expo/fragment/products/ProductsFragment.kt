@@ -1,11 +1,11 @@
-package com.aviator.myapplication.fragment.products
+package com.hussain.spark_expo.fragment.products
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.aviator.myapplication.databinding.FragmentProductsBinding
+import com.hussain.spark_expo.databinding.FragmentProductsBinding
 
 class ProductsFragment : Fragment() {
     private lateinit var binding : FragmentProductsBinding

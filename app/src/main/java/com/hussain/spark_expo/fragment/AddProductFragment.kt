@@ -1,4 +1,4 @@
-package com.aviator.myapplication.fragment
+package com.hussain.spark_expo.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.aviator.myapplication.R
+import com.hussain.spark_expo.R
 
 class AddProductFragment : Fragment() {
 

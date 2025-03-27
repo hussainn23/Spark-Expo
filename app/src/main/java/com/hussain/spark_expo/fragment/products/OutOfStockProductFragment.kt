@@ -1,11 +1,11 @@
-package com.aviator.myapplication.fragment.products
+package com.hussain.spark_expo.fragment.products
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.aviator.myapplication.R
+import com.hussain.spark_expo.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
