@@ -74,13 +74,13 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(R.id.dashboardFragment)
             closeDrawer()
         }
-
+        binding.selectProducts.setOnClickListener {
+            navController.navigate(R.id.productsViewPagerFragment)
+            closeDrawer()
+        }
         // Products - Visible only to Admin
         if (role == "admin") {
-            binding.selectProducts.setOnClickListener {
-                navController.navigate(R.id.productsViewPagerFragment)
-                closeDrawer()
-            }
+
             binding.addProduct.setOnClickListener {
                 navController.navigate(R.id.addProductFragment)
                 closeDrawer()
@@ -90,7 +90,6 @@ class MainActivity : AppCompatActivity() {
                 closeDrawer()
             }
         } else {
-            binding.selectProducts.visibility = View.GONE
             binding.addProduct.visibility = View.GONE
             binding.categories.visibility = View.GONE
         }

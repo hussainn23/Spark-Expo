@@ -30,27 +30,24 @@ class LoginActivity : AppCompatActivity() {
 
 
         binding.btnLogin.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-//            val email = binding.email.text.toString().trim()
-//            val password = binding.password.text.toString().trim()
-//
-//            if (email.isEmpty() || password.isEmpty()) {
-//                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
-//                return@setOnClickListener
-//            }
-//            utils.startLoadingAnimation()
-//            userViewModel.login(email, password).observe(this) { user ->
-//                if (user != null) {
-//                    utils.endLoadingAnimation()
-//                    Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
-//                    navigateToMain(user)
-//                } else {
-//                    utils.endLoadingAnimation()
-//                    Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
-//                }
-//            }
+            val email = binding.email.text.toString().trim()
+            val password = binding.password.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            utils.startLoadingAnimation()
+            userViewModel.login(email, password).observe(this) { user ->
+                if (user != null) {
+                    utils.endLoadingAnimation()
+                    Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
+                    navigateToMain(user)
+                } else {
+                    utils.endLoadingAnimation()
+                    Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

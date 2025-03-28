@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,9 +19,11 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.hussain.spark_expo.adapter.HomeAdapter
+import com.hussain.spark_expo.utils.SharedPrefManager
 
 class DashboardFragment : Fragment() {
     private lateinit var binding: FragmentDashboardBinding
+    private lateinit var sharedPrefManager: SharedPrefManager
     private lateinit var orderAdapter: HomeAdapter
     private val ordersList = mutableListOf<Temp>()
     private val db = FirebaseFirestore.getInstance()
@@ -36,7 +39,8 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        sharedPrefManager = SharedPrefManager(requireContext())
+        Toast.makeText(requireContext(), "role:"+sharedPrefManager.getUser()?.role, Toast.LENGTH_SHORT).show()
         utils = Utils(requireContext())
         binding.recyclerViewOrders.layoutManager = LinearLayoutManager(context)
         orderAdapter = HomeAdapter(ordersList)
@@ -64,7 +68,8 @@ class DashboardFragment : Fragment() {
 
                 for (orderDoc in ordersSnapshot.documents) {
                     val orderId = orderDoc.id
-                    val productsList = orderDoc.get("products") as? List<Map<String, Any>> ?: emptyList()
+                    val productsList =
+                        orderDoc.get("products") as? List<Map<String, Any>> ?: emptyList()
                     val itemList = mutableListOf<Item>()
                     var orderTotal = 0.0
 
