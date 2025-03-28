@@ -3,6 +3,7 @@ package com.hussain.spark_expo.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -12,15 +13,19 @@ import androidx.navigation.fragment.NavHostFragment
 import com.hussain.spark_expo.R
 import com.hussain.spark_expo.databinding.ActivityMainBinding
 import com.hussain.spark_expo.databinding.DialogLogoutBinding
+import com.hussain.spark_expo.utils.SharedPrefManager
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var sharedPrefManager: SharedPrefManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        sharedPrefManager=SharedPrefManager(this)
+        val role=sharedPrefManager.getUser()?.role
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -60,31 +65,50 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     private fun setupCustomNavigationView() {
+        val role = sharedPrefManager.getUser()?.role  // Fetch user role
+
+        // Dashboard - Visible to both Admin and Cashier
         binding.dashboard.setOnClickListener {
             navController.navigate(R.id.dashboardFragment)
             closeDrawer()
         }
-        binding.selectProducts.setOnClickListener {
-            navController.navigate(R.id.productsViewPagerFragment)
-            closeDrawer()
+
+        // Products - Visible only to Admin
+        if (role == "admin") {
+            binding.selectProducts.setOnClickListener {
+                navController.navigate(R.id.productsViewPagerFragment)
+                closeDrawer()
+            }
+            binding.addProduct.setOnClickListener {
+                navController.navigate(R.id.addProductFragment)
+                closeDrawer()
+            }
+            binding.categories.setOnClickListener {
+                navController.navigate(R.id.categoriesFragment)
+                closeDrawer()
+            }
+        } else {
+            binding.selectProducts.visibility = View.GONE
+            binding.addProduct.visibility = View.GONE
+            binding.categories.visibility = View.GONE
         }
-        binding.addProduct.setOnClickListener {
-            navController.navigate(R.id.addProductFragment)
-            closeDrawer()
+
+        // Orders - Visible to both Admin and Cashier
+        if (role == "admin" || role == "cashier") {
+            binding.orders.setOnClickListener {
+                navController.navigate(R.id.ordersFragment)
+                closeDrawer()
+            }
+        } else {
+            binding.orders.visibility = View.GONE
         }
-        binding.categories.setOnClickListener {
-            navController.navigate(R.id.categoriesFragment)
-            closeDrawer()
-        }
-        binding.orders.setOnClickListener {
-            navController.navigate(R.id.ordersFragment)
-            closeDrawer()
-        }
+
+        // Logout - Visible to all
         binding.logout.setOnClickListener {
             showLogoutDialog()
         }
-
     }
 
     private fun closeDrawer() {

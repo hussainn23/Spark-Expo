@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Spark-Expo</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>

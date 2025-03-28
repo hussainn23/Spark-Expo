@@ -1,4 +1,7 @@
 package com.hussain.spark_expo.model
 
-class CartModel {
-}
+class CartModel (
+    var id: String = "",
+    var quantity: String = "",
+    var productId: String = "",
+)

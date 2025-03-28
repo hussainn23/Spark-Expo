@@ -1,60 +1,166 @@
 package com.hussain.spark_expo.fragment.products
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.hussain.spark_expo.R
+import com.hussain.spark_expo.ViewModel.ProductViewModel
+import com.hussain.spark_expo.adapter.ProductAdapter
+import com.hussain.spark_expo.databinding.FragmentOutOfStockProductBinding
+import com.hussain.spark_expo.model.ProductModel
+import com.hussain.spark_expo.utils.Utils
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [OutOfStockProductFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class OutOfStockProductFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentOutOfStockProductBinding
+    private lateinit var utils: Utils
+    private lateinit var productAdapter: ProductAdapter
+    private var productList: MutableList<ProductModel> = mutableListOf()
+    private val productViewModel: ProductViewModel by viewModels()
+    private var firestoreListener: ListenerRegistration? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_out_of_stock_product, container, false)
+    ): View {
+        binding = FragmentOutOfStockProductBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment OutOfStockProductFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OutOfStockProductFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        utils = Utils(requireContext())
+        setupRecyclerView()
+        loadOutOfStockProducts()
+        setupSearch()
+    }
+
+    private fun setupRecyclerView() {
+        binding.orderItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
+        productAdapter = ProductAdapter(productList, ::showEditDialog, ::showDeleteDialog)
+        binding.orderItemsRecycler.adapter = productAdapter
+    }
+
+    private fun loadOutOfStockProducts() {
+        firestoreListener = FirebaseFirestore.getInstance()
+            .collection("Products")
+            .addSnapshotListener { snapshots, error ->
+                if (error != null) {
+                    Toast.makeText(requireContext(), "Error fetching products", Toast.LENGTH_SHORT).show()
+                    return@addSnapshotListener
+                }
+
+                if (snapshots != null) {
+                    productList.clear()
+                    for (document in snapshots) {
+                        val product = document.toObject(ProductModel::class.java)
+                        if (product.quantity.toInt() == 0) {
+                            productList.add(product)
+                        }
+                    }
+                    productAdapter.updateList(productList)
                 }
             }
+    }
+
+    private fun setupSearch() {
+        binding.searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { productAdapter.filterList(it) }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let { productAdapter.filterList(it) }
+                return true
+            }
+        })
+    }
+
+    private fun showEditDialog(product: ProductModel) {
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_link, null)
+        val titleTextView = dialogView.findViewById<TextView>(R.id.dialogTitle)
+        val editText = dialogView.findViewById<EditText>(R.id.addCategory)
+        val btnAdd = dialogView.findViewById<Button>(R.id.btnAdd)
+
+        titleTextView.text = "Edit Product Quantity"
+        btnAdd.text = "Update"
+        editText.setText(product.quantity)
+
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        btnAdd.setOnClickListener {
+            val newQuantity = editText.text.toString().trim()
+            if (newQuantity.isNotEmpty()) {
+                updateProductQuantity(product, newQuantity.toInt())
+                dialog.dismiss()
+            } else {
+                Toast.makeText(requireContext(), "Quantity cannot be empty", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        dialog.show()
+    }
+
+    private fun updateProductQuantity(product: ProductModel, newQuantity: Int) {
+        product.quantity = newQuantity.toString()
+        utils.startLoadingAnimation()
+        FirebaseFirestore.getInstance().collection("Products").document(product.id)
+            .set(product)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    utils.endLoadingAnimation()
+                } else {
+                    utils.endLoadingAnimation()
+                }
+            }
+            .addOnFailureListener {
+                utils.endLoadingAnimation()
+            }
+    }
+
+    private fun showDeleteDialog(product: ProductModel) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Delete Product")
+            .setMessage("Are you sure you want to delete this product?")
+            .setPositiveButton("Delete") { _, _ ->
+                deleteProduct(product)
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun deleteProduct(product: ProductModel) {
+        utils.startLoadingAnimation()
+        FirebaseFirestore.getInstance().collection("Products").document(product.id)
+            .delete()
+            .addOnSuccessListener {
+                Toast.makeText(requireContext(), "Product deleted successfully", Toast.LENGTH_SHORT).show()
+                utils.endLoadingAnimation()
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed to delete product", Toast.LENGTH_SHORT).show()
+                utils.endLoadingAnimation()
+            }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        firestoreListener?.remove()
     }
 }

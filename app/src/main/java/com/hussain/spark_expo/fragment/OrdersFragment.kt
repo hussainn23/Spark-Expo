@@ -1,60 +1,106 @@
 package com.hussain.spark_expo.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 import com.hussain.spark_expo.R
+import com.hussain.spark_expo.adapter.OrdersAdapter
+import com.hussain.spark_expo.model.Item
+import com.hussain.spark_expo.model.Temp
+import com.hussain.spark_expo.utils.Utils
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [OrdersFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class OrdersFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var tvTotalSales: TextView
+    private val ordersList = mutableListOf<Temp>()
+    private lateinit var adapter: OrdersAdapter
+    private val db = FirebaseFirestore.getInstance()
+    private lateinit var utils: Utils  // For Loading Animation
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_orders, container, false)
+        val view = inflater.inflate(R.layout.fragment_orders, container, false)
+
+        recyclerView = view.findViewById(R.id.orderRCV)
+        tvTotalSales = view.findViewById(R.id.tvTotalSales)
+        utils = Utils(requireContext()) // Initialize animation utility
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        adapter = OrdersAdapter(ordersList)
+        recyclerView.adapter = adapter
+
+        fetchOrders()
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment OrdersFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OrdersFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun fetchOrders() {
+        utils.startLoadingAnimation() // Start Loading Animation
+
+        db.collection("Orders").get()
+            .addOnSuccessListener { ordersSnapshot ->
+                ordersList.clear()
+                var totalSales = 0.0
+                val orderMap = mutableMapOf<String, MutableList<Item>>()
+
+                if (ordersSnapshot.isEmpty) {
+                    tvTotalSales.text = "Total Sales: Rs. 0.00"
+                    adapter.notifyDataSetChanged()
+                    utils.endLoadingAnimation() // Stop Animation
+                    return@addOnSuccessListener
                 }
+
+                for (orderDoc in ordersSnapshot.documents) {
+                    val orderId = orderDoc.id
+
+                    val productsList = orderDoc.get("products") as? List<Map<String, Any>> ?: emptyList()
+                    val itemList = mutableListOf<Item>()
+                    var orderTotal = 0.0
+
+                    for (product in productsList) {
+                        val price = (product["price"] as? String)?.toDoubleOrNull() ?: 0.0
+                        val quantity = (product["quantity"] as? String)?.toIntOrNull() ?: 0
+
+                        val item = Item(
+                            price = price.toString(),
+                            productId = product["productId"] as? String ?: "",
+                            quantity = quantity.toString()
+                        )
+
+                        itemList.add(item)
+                        orderTotal += price * quantity
+                    }
+
+                    orderMap[orderId] = itemList
+                    totalSales += orderTotal
+                }
+
+                updateUI(orderMap, totalSales)
             }
+            .addOnFailureListener {
+                tvTotalSales.text = "Failed to load orders"
+                utils.endLoadingAnimation() // Stop Animation
+            }
+    }
+
+    private fun updateUI(orderMap: Map<String, List<Item>>, totalSales: Double) {
+        ordersList.clear()
+        for ((orderId, items) in orderMap) {
+            ordersList.add(Temp(orderId = "#SG-$orderId", items = items))
+        }
+
+        adapter.notifyDataSetChanged()
+        tvTotalSales.text = "Total Sales: Rs. ${String.format("%.2f", totalSales)}"
+
+        utils.endLoadingAnimation() // Stop Animation
     }
 }

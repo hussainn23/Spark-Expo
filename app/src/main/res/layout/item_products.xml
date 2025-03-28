@@ -20,8 +20,9 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
         android:layout_alignParentStart="true"
-        android:src="@drawable/med" />
+        android:src="@drawable/dn" />
 
     <TextView
         android:id="@+id/item_name"
@@ -60,15 +61,61 @@
         />
 
     <TextView
-        android:id="@+id/item_stock_status"
+
+        android:id="@+id/addToCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="In Stock"
+        android:text="Add to Cart"
         android:padding="4dp"
         android:layout_alignParentEnd="true"
         android:background="@drawable/login_btn"
         android:textColor="#FFFFFF"
         android:layout_marginEnd="8dp"
         android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/itemStockStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_toEndOf="@id/item_price"
+        android:layout_below="@id/item_quantity"
+        android:layout_alignParentEnd="true"
+        >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+android:weightSum="3"
+    android:layout_marginTop="2dp">
+    <TextView
+        android:id="@+id/caitem_stock_status"
+        android:layout_width="30dp"
+        android:layout_height="23dp"
+        android:layout_weight="1"
+        android:visibility="invisible"
+        />
+
+    <ImageView
+        android:id="@+id/edit"
+        android:layout_width="30dp"
+        android:layout_height="23dp"
+        android:layout_weight="1"
+
+        android:src="@drawable/edit_"/>
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="30dp"
+        android:layout_height="23dp"
+        android:layout_weight="1"
+
+        android:src="@drawable/del"/>
+
+</LinearLayout>
+
+
+
+
+
+    </LinearLayout>
 
 </RelativeLayout>

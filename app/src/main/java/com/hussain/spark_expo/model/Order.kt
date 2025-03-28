@@ -1,8 +1,10 @@
 package com.hussain.spark_expo.model
 
+import com.google.firebase.Timestamp
+
 data class Order(
-    val serialNo: String,
-    val orderId: String,
-    val pharmacyName: String,
-    val price: String
-)
+    val orderId: String="",
+    val price: String="",
+    val productId:String="",
+    val quantity:String="",
+    )

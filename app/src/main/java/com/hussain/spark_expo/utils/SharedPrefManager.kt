@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
+import com.hussain.spark_expo.model.ProductModel
 import com.hussain.spark_expo.model.UserModel
 
 class SharedPrefManager(context: Context) {
@@ -62,22 +63,22 @@ class SharedPrefManager(context: Context) {
         editor.clear().apply() // Use apply() instead of commit() for better performance
     }
 
-//    fun saveMeditationsList(list: List<Meditation>) {
-//        val json = gson.toJson(list)
-//        editor.putString(constants.MEDITATION_COLLECTION, json)
-//        editor.apply() // apply() is asynchronous; use commit() for synchronous saving
-//    }
-//
-//
-//    fun getMeditationsList(): List<Meditation>? {
-//        val json = sharedPref.getString(constants.MEDITATION_COLLECTION, null)
-//        val type = object : TypeToken<List<Meditation>>() {}.type
-//        return if (json != null) {
-//            gson.fromJson(json, type)
-//        } else {
-//            emptyList()
-//        }
-//    }
+    fun saveProductsList(list: List<ProductModel>) {
+        val json = gson.toJson(list)
+        editor.putString("products", json)
+        editor.apply() // apply() is asynchronous; use commit() for synchronous saving
+    }
+
+
+    fun getProductsList(): List<ProductModel>? {
+        val json = sharedPref.getString("products", null)
+        val type = object : TypeToken<List<ProductModel>>() {}.type
+        return if (json != null) {
+            gson.fromJson(json, type)
+        } else {
+            emptyList()
+        }
+    }
 
 
 

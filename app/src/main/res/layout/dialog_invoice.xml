@@ -9,8 +9,8 @@
 
     <!-- Logo -->
     <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:src="@drawable/logo" />
 
@@ -21,47 +21,38 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="My POS App"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="#008000"
         android:textStyle="bold" />
 
     <!-- Invoice Title -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="INVOICE"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#008000"
-        android:gravity="center"
-        android:paddingTop="8dp" />
+
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#008000"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="10dp" />
 
     <!-- Invoice Details -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingVertical="10dp">
+        android:paddingVertical="8dp">
 
-        <!-- Invoice Details -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="8dp">
+            android:paddingBottom="6dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Invoice #:"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -70,21 +61,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="INV-00001"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="8dp">
+            android:paddingBottom="6dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Invoice Date:"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -92,163 +83,76 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="05 Aug 2024"
-                android:textSize="16sp" />
+                android:text="28 March 2024"
+                android:textSize="12sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="8dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Due Date:"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_due_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="05 Sep 2024"
-                android:textSize="16sp" />
-        </LinearLayout>    </LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#008000" />
 
-    <!-- Product Name -->
+    <!-- Products List -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Products"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingTop="5dp" />
+
+    <!-- RecyclerView for multiple products -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_products"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:paddingVertical="6dp" />
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="8dp">
+        android:paddingBottom="6dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Product Name:"
-            android:textSize="16sp"
+            android:text="Total Amount"
+            android:layout_marginTop="14dp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_product_details"
+            android:id="@+id/tvTotalAmount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Abc"
-            android:textSize="16sp" />
+            android:layout_marginTop="14dp"
+            android:text="05 Aug 2024"
+            android:textSize="12sp" />
     </LinearLayout>
 
-    <!-- Category -->
-    <LinearLayout
+
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="8dp">
+        android:layout_height="1dp"
+        android:background="#008000" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Category:"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_category"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Electronics"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <!-- Item Code -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="8dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Item Code:"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_item_code"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="XYZ123"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <!-- Quantity -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="8dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Quantity:"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_quantity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="10"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <!-- Price -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="8dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Total Price:"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_price"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Rs. 1000"
-            android:textSize="16sp" />
-    </LinearLayout>    <!-- Buttons -->
+    <!-- Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:paddingTop="15dp">
+        android:paddingTop="10dp">
 
         <Button
             android:id="@+id/btn_proceed"
@@ -256,6 +160,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Proceed"
+            android:textSize="12sp"
             android:textColor="@android:color/white"
             android:backgroundTint="#008000" />
 
@@ -265,9 +170,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Print"
+            android:textSize="12sp"
             android:textColor="@android:color/white"
             android:backgroundTint="#FF9800"
             android:layout_marginStart="10dp" />
     </LinearLayout>
 </LinearLayout>
-

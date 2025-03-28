@@ -10,21 +10,29 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-
-        <!-- Filter Spinners -->
+        <!-- Search View for Filtering Items -->
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="14dp"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search products..."
+            android:background="@drawable/stroke" />
 
         <!-- RecyclerView for Items -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/order_items_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_margin="16dp"
-            tools:listitem="@layout/item_products"
+            android:layout_below="@id/search_view"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="14dp"
             android:padding="8dp"
             android:clipToPadding="false"
+            tools:listitem="@layout/item_products"
             android:background="@drawable/stroke" />
-
 
     </RelativeLayout>
 </FrameLayout>

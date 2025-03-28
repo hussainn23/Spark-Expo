@@ -7,8 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hussain.spark_expo.R
 import com.hussain.spark_expo.model.Order
+import com.hussain.spark_expo.model.OrderModel
 
-class OrderAdapter(private val orders: List<Order>) : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
+class OrderAdapter(private val orders: List<OrderModel>) : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_order, parent, false)
@@ -27,7 +28,7 @@ class OrderAdapter(private val orders: List<Order>) : RecyclerView.Adapter<Order
         private val productName: TextView = itemView.findViewById(R.id.tvProductName)
         private val price: TextView = itemView.findViewById(R.id.tvPrice)
 
-        fun bind(order: Order) {
+        fun bind(order: OrderModel) {
             serialNo.text = order.serialNo
             orderId.text = order.orderId
             productName.text = order.pharmacyName
